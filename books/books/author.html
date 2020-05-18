@@ -1,0 +1,15 @@
+{% extends "books/base.html" %}
+
+{% block page_header %}
+  <h3>{{ author }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <ul>
+    {% for book in books %}
+    <h5><li><a class="text-secondary" href="{% url 'books:book' book.id %}">{{ book }}</a></li></h5>
+    {% empty %}
+    <p>There are no books of this author added yet.</p>
+    {% endfor %}
+  </ul>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "books/base.html" %}
+
+{% block page_header %}
+  <h3>{{ book }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-body">
+    <ul>
+      <li class="lead">Author: <a class="text-info" href="{% url 'books:author' book.author.id %}">{{ book.author }}</a></li>
+      <li class="lead">Pages: {{ book.pages }}</li>
+      <li class="lead">Genre: <a class="text-info" href="{% url 'books:genre' book.genre.id %}">{{ book.genre }}</a></li>
+      <li class="lead">Calification: {{ book.calification }}</li>
+      <li class="lead">Date added: {{ book.date_added|date:'M d, Y H:i' }}</li>
+    </ul>
+    <p class="lead">Review: {{ book.review|linebreaks }}</p>
+  </div>
+</div>
+<p>
+  {% for chap in chapters %}
+    <h5>{{ chap.num }}: <a class="text-secondary" href="{% url 'books:chapter' chap.id %}">{{ chap }}</a></h5>
+  {% empty %}
+    No chapters have been added yet.
+  {% endfor %}
+</p>
+{% for comment in comments %}
+  <div class="card mb-3">
+    <h4 class="card-header">
+      {{ comment.user }}
+      <small>{{ comment.date_added|date:'M d, Y H:i' }}</small>
+    </h4>
+    <div class="card-body">
+      {% if comment.spoiler %}
+        <p>Ojo que viene con spoilers</p>
+      {% endif %}
+      <p class="lead">{{ comment.text|linebreaks }}</p>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block button_header %}
+
+<form>
+    <input class="btn btn-danger ml-4" type="button" value="Volver" onclick="history.go(-1)">
+</form>
+{% endblock button_header %}
+{% block content %}
+<div class="jumbotron bg-dark">
+
+    <div class="row">
+        <h1 class="display-3">Novedades</h1>
+    </div>
+
+    <div class="row">
+        <ul class="list">
+            {% for novedad in novedades %}
+            <hr class="mt-4 bg-light"/>
+            <div class="row">
+                <a class="text"><h2><a class="text-light" href="{% url 'novedades:novedad' novedad.id %}">{{ novedad }}</a></h2></a>
+            </div>
+            <div class="row">
+
+                <h5>{{ novedad.descripcion }}</h5>
+
+            </div>
+            <div class="row">
+                <a class="btn btn-danger" href="{% url 'novedades:novedad' novedad.id %}">Ver más</a>
+            </div>
+            <hr class="mt-4 bg-light"/>
+            {% empty %}
+            <li>Todavía no se agregaron novedades.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    </div>
+</div>
+
+{% endblock content %}

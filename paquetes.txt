@@ -1,0 +1,12 @@
+asgiref==3.2.7
+beautifulsoup4==4.9.0
+bootstrap4==0.1.0
+Django==3.0.6
+django-bootstrap4==1.1.1
+django-credit-cards==0.4.1
+mysqlclient==1.4.6
+Pillow==7.1.2
+pkg-resources==0.0.0
+pytz==2020.1
+soupsieve==2.0
+sqlparse==0.3.1

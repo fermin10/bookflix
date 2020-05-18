@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block button_header %}
+
+    <form>
+        <input class="btn btn-danger ml-4" type="button" value="Volver" onclick="history.go(-1)">
+    </form>
+{% endblock button_header %}
+{% block page_header %}
+
+{% endblock page_header %}
+
+{% block content %}
+
+<div class="jumbotron bg-dark">
+    <div class="row ml-4 mb-4">
+      <h1>{{ novedad.titulo }}</h1>
+    </div>
+    {% if not novedad.libro is None %}
+        <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-4">
+                {% if not novedad.imagen %}
+
+                    <img src="{{ novedad.libro.imagen.url }}" width="80%" />
+                {% else %}
+                    <img src="{{ novedad.imagen.url }}" width="80%" />
+                {% endif %}
+            </div>
+
+            <div class="col-8">
+                <div class="row ml-2">
+                    <h4> {{ novedad.descripcion }}</h4>
+                </div>
+
+                <div class="row ml-2">
+                    <h4 class="text"> Libro relacionado:</h4> <a class="text-light display-4" href="{% url 'libros:libro' novedad.libro.ISBN %}"> {{ libro.titulo }}</a>
+                </div>
+                <div class="row ml-2">
+                    <a class="mt-4 btn btn-danger" href={{ novedad.trailer }}>Ver trailer</a>
+                </div>
+     {% else %}
+
+         <div class="row ml-4">
+             <h4> {{ novedad.descripcion }}</h4>
+         </div>
+     {% endif %}
+            </div>
+        </div>
+
+
+    </div>
+
+    </div>
+</div>
+<p>
+</p>
+
+
+{% endblock content %}

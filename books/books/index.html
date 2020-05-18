@@ -1,0 +1,10 @@
+{% extends "books/base.html" %}
+
+{% block page_header %}
+  <div class="jumbotron">
+    <h1 class="display-3">Bookflix.</h1>
+    <p class="lead">Bookflix es una blabla... </p>
+      <a class="btn btn-lg btn-primeary" href="{% url "books:books_list" %}"
+        role="button">Todos los libros &raquo;</a>
+  </div>
+{% endblock page_header %}

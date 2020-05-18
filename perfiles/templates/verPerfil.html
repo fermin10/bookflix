@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block button_header %}
+
+    <form>
+        <input class="btn btn-danger ml-4" type="button" value="Volver" onclick="history.go(-1)">
+    </form>
+{% endblock button_header %}
+{% block page_header %}
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+{% endblock page_header %}
+
+{% block content %}
+
+<div class="jumbotron bg-dark">
+    <div class="row">
+        <h1 class="display-4">Mi perfil</h1>
+    </div>
+    <div class="row">
+        <div class="col-1 mr-auto">
+            <h2 class="m-4"> {{ perfil.nombre }} </h2>
+        </div>
+        <div class="col-1 mr-auto">
+            <a class="btn btn-danger mb-3"> Editar nombre</a>
+            <a class="btn btn-danger"> Eliminar perfil </a>
+
+        </div>
+    </div>
+
+
+</div>
+{% endblock content %}

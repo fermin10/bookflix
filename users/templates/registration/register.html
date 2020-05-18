@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container bg-dark text-white" style="margin-left:50px">
+
+  <label class="display-4 mt-4 mb-3" style="margin-left:100px">Regístrate</label>
+
+  <form method="post" action="{% url 'users:register' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-danger mb-3" style="margin-left:100px" name="submit">Registrarme</button>
+  <input type="hidden" name="next" value="{% url 'novedades:index' %}" />
+  </form>
+</div>
+
+
+{% endblock content %}

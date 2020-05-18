@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block button_header %}
+    {% if user.is_authenticated %}
+
+    <div class="dropdown ml-4">
+        <button type="dropdown" class="btn btn-danger dropdown-toggle" id="navbardrop" data-toggle="dropdown" style="margin-right:40px">
+            Libros </button>
+        <div class="dropdown-menu">
+
+
+            <a class="dropdown-item" href="{% url "libros:listado_libros" %}">Todos los libros</a>
+
+        </div>
+    </div>
+    {% endif %}
+{% endblock button_header %}
+{% block page_header %}
+
+<div class="jumbotron bg-dark">
+    {% if user.is_authenticated %}
+    <div class="row mb-4">
+        <h1 class="display-3">Últimas novedades</h1><a class="btn btn-danger m-4" href="{% url 'novedades:listado_novedades' %}">Ver todas</a>
+    </div>
+    <div class="row">
+        <ul class="list">
+        {% for novedad in novedades %}
+            <hr class="mt-4 bg-light"/>
+            <div class="row">
+                <a class="text"><h2><a class="text-light" href="{% url 'novedades:novedad' novedad.id %}">{{ novedad }}</a></h2></a>
+            </div>
+            <div class="row">
+                <h5>{{ novedad.descripcion }}</h5>
+
+            </div>
+            <div class="row">
+                <a class="btn btn-danger mx-auto" href="{% url 'novedades:novedad' novedad.id %}">Ver más</a>
+            </div>
+            <hr class="mt-4 bg-light"/>
+        {% empty %}
+            <li>Todavía no se agregaron novedades.</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <div class="row mb-4">
+        <h1 class="display-3">Últimos lanzamientos</h1> <a class="btn btn-danger m-4" href="{% url 'libros:listado_libros' %}">Ver todos</a>
+
+    </div>
+    <div class="row">
+
+
+        {% for libro in libros %}
+        <div class="col-4 mt-4 mb-4">
+            <li class="list-inline-item ml-4">
+
+                <h3><a class="text-light" href="{% url 'libros:libro' libro.ISBN %}">{{ libro }}</a></h3>
+
+            <a href="{% url 'libros:libro' libro.ISBN %}"/><img class="ml-4" src="{{ libro.imagen.url }}" height="250px"  width="160px" /></li>
+        </div>
+        {% empty %}
+            <a>Todavía no se agregaron libros.</a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock page_header %}

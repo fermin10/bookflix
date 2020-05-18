@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block button_header %}
+
+<form>
+    <input class="btn btn-danger ml-4" type="button" value="Volver" onclick="history.go(-1)">
+</form>
+{% endblock button_header %}
+{% block content %}
+<div class="jumbotron bg-dark">
+    <div class="row">
+        <h2 class="display-3 mb-4">¡Ups! No es posible crear un nuevo perfil</h2>
+    </div>
+    <div class="row">
+        <h4 class="m-4"> Usted ha excedido la cantidad de perfiles permitidos para su tipo de membresía.</h4>
+        {% if not usuario.subscription == premium %}
+            <h4 class="m-4">Actualmente se encuentra suscripto a la membresía {{ usuario.subscription }}.</h4>
+            <h4 class="m-4">¡Suscríbase a premium para disfrutar de más perfiles!</h4>
+            <h4></h4><a class="btn btn-danger m-4" href="{% url 'users:configurar' %}">Cambiar suscripción</a>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock content %}

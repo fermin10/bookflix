@@ -1,0 +1,17 @@
+
+
+
+{% block page_header %}
+<h3>Books</h3>
+{% endblock page_header %}
+
+{% block content %}
+<ul>
+  {% for book in books %}
+  <li><h5>{{ book }}</h5></li>
+  {% empty %}
+  <li>No books have been added yet.</li>
+  {% endfor %}
+</ul>
+
+{% endblock content %}

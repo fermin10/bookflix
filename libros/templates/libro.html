@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block button_header %}
+
+    <form>
+        <input class="btn btn-danger ml-4" type="button" value="Volver" onclick="history.go(-1)">
+    </form>
+{% endblock button_header %}
+{% block page_header %}
+<h3 class="display-3 m-4">{{ book }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+<div class="card bg-dark mb-3">
+    <div class="card-body">
+
+        <ul>
+
+            <div class="row mb-4">
+                <div class="col-4">
+
+                    <img src="{{ book.imagen.url }}" alt="Imagen de portada" width="80%" />
+                </div>
+                <div class="col-8">
+                    {% if book.fecha_lanzamiento > hoy %}
+                        <div class="row">
+                            <h3 class="display-3">Próximamente</h3>
+                        </div>
+                        <div class="row">
+                            <h3>Este libro estará disponible a partir del {{ book.fecha_lanzamiento }}. </h3>
+                        </div>
+
+                    {% else %}
+                        <div class="row">
+                            <a class="lead">ISBN: {{ book.ISBN }}</a>
+                        </div>
+                        <div class="row">
+                            <a class="lead">Autor: <a class="text-light ml-2 mt-1" href="{% url 'libros:autor' book.autor.nombre %}">{{ book.autor }}</a></a>
+                        </div>
+                        <div class="row">
+                            <a class="lead">Género:</a>
+                            {% for gen in book.genero.all %}
+
+                            <div class="list-inline">
+
+                                <a class="list-inline-item text-light ml-4 mt-1" href="{% url 'libros:genero' gen %}"> {{ gen }}</a>
+
+                            </div>
+    
+
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            <a class="lead">Editorial: <a class="text-light ml-2 mt-1" href="{% url 'libros:editorial' book.editorial.nombre %}"> {{ book.editorial }}</a> </a>
+                        </div>
+                        <div class="row">
+                            <a class="lead">Sinopsis: {{ book.sinopsis }}</a>
+                        </div>
+                        <div class="row">
+                            <div class="mx-auto">
+                                <a class="btn btn-danger m-4">Leer libro</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+        </ul>
+
+    </div>
+</div>
+<p>
+</p>
+
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "books/base.html" %}
+
+{% block page_header %}
+  <h3>Genres</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <ul>
+    {% for genre in genres %}
+    <li><h5><a class="text-secondary" href="{% url 'books:genre' genre.id %}">{{ genre }}</a></h5></li>
+    {% empty %}
+    <p>There are no genres added yet.</p>
+    {% endfor %}
+  </ul>
+{% endblock content %}

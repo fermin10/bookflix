@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block button_header %}
+
+    <form>
+        <input class="btn btn-danger ml-4" type="button" value="Volver" onclick="history.go(-1)">
+    </form>
+{% endblock button_header %}
+{% block content %}
+<div class="jumbotron bg-dark">
+    <div class="row">
+        <h2 class="display-3 mb-4">Nuevo perfil</h2>
+    </div>
+    <div class="row">
+
+
+        <form class="ml-4" method="post" action="{% url 'perfiles:nuevoPerfil' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <button class="btn btn-danger" name="submit">Crear perfil</button>
+        <input type="hidden" name="next" value="{% url 'novedades:index' %}" />
+        </form>
+    </div>
+</div>
+{% endblock content %}

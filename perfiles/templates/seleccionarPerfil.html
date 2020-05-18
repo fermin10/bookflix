@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+
+{% block page_header %}
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+{% endblock page_header %}
+
+{% block content %}
+
+<div class="jumbotron bg-dark">
+    <h2 class="display-3 ml-4 mb-4">¿Quién está leyendo ahora?</h2>
+    {% if perfiles.exists %}
+    <div class="container">
+        <div class="row">
+            {% for perfil in perfiles %}
+            <div class="col-4 bg-light mr-4 p-4">
+                <h3 style="text-align: center;"><a class="text-secondary bg-light" href="{% url 'perfiles:iniciarPerfil' perfil.id %}">{{ perfil.nombre }}</a></h3>
+
+            </div>
+            {% endfor %}
+            <div>
+            </div>
+    {% endif %}
+     <form method="GET" action="{% url 'perfiles:nuevoPerfil' %}">
+                <button class="btn btn-danger mt-3" type="submit">Crear perfil</button>
+     </form>
+</div>
+
+{% endblock content %}
